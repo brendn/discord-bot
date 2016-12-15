@@ -1,7 +1,6 @@
 @file:JvmName("DiscordBot")
 package me.brendn.discord
 
-import TOKEN
 import me.brendn.discord.command.CommandManager
 import me.brendn.discord.listener.MessageListener
 import net.dv8tion.jda.core.AccountType
@@ -17,7 +16,7 @@ public class DiscordBot {
 		val commandManager = CommandManager
 
 		@JvmStatic public fun main(args: Array<String>) {
-			val jda = JDABuilder(AccountType.BOT).setToken(TOKEN).buildBlocking()
+			val jda = JDABuilder(AccountType.BOT).setToken(args[0]).buildBlocking()
 			jda.addEventListener(MessageListener())
 		}
 	}
