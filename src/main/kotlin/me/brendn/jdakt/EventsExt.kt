@@ -12,6 +12,7 @@ fun MessageReceivedEvent.getPreviousMessage() {
 
 }
 
-fun MessageReceivedEvent.getName() = message.author.name
+val MessageReceivedEvent.authorName: String get() = member.effectiveName
+
 fun MessageReceivedEvent.getMessageId() = message.id
 fun MessageReceivedEvent.print(message: String) = channel.message(message)

@@ -14,7 +14,6 @@ class Math {
 		registerCommand("calc", "Calculates the given expression.") { event, args, message ->
 			fun getResponse(error: String) : String {
 				val unknownOp = ": "
-
 				if (error.lastIndexOf(unknownOp) != -1) {
 					val input = error.substring(error.lastIndexOf(unknownOp) + 1, error.length)
 					return "$input? Are you kidding me?"
@@ -34,14 +33,5 @@ class Math {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Converts the [list] to an [IntArray], removing anything that isn't an [Int]
-	 */
-	fun removeInvalid(list: List<String>): IntArray {
-		val out: ArrayList<Int> = arrayListOf()
-		for (s in list) { try { out.add(s.toInt()) } catch (e: NumberFormatException) {}}
-		return out.toIntArray()
 	}
 }
