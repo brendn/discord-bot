@@ -2,7 +2,7 @@ package me.brendn.discord.command
 
 import me.brendn.discord.command.commands.Fun
 import me.brendn.discord.command.commands.Math
-import me.brendn.discord.util.message
+import me.brendn.jdakt.message
 import net.dv8tion.jda.core.MessageHistory
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
