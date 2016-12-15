@@ -1,5 +1,6 @@
 package me.brendn.discord.command.commands
 
+import com.udojava.evalex.Expression
 import me.brendn.discord.command.CommandManager.registerCommand
 
 /**
@@ -10,14 +11,27 @@ import me.brendn.discord.command.CommandManager.registerCommand
 class Math {
 
 	init {
-		registerCommand("add", "Adds the specified numbers.") { _, args, _ ->
+		registerCommand("calc", "Calculates the given expression.") { event, args, message ->
+			fun getResponse(error: String) : String {
+				val unknownOp = ": "
+
+				if (error.lastIndexOf(unknownOp) != -1) {
+					val input = error.substring(error.lastIndexOf(unknownOp) + 1, error.length)
+					return "$input? Are you kidding me?"
+				}
+				return error
+			}
+
 			if (args.isEmpty()) {
 				"Maybe if you gave me some numbers I'd be able to do something."
 			} else {
-				val numbers = removeInvalid(args)
-				val hadNoNumbers = numbers.isEmpty()
-				val rudeResponse = if (hadNoNumbers) "\nHow about you use numbers next time?  Is that so hard?" else ""
-				"Those numbers add up to ${numbers.sum()}. $rudeResponse"
+				try {
+					val inputExpression = message.substring(4, message.length)
+					"`$inputExpression = ${Expression(inputExpression).eval().toFloat()}.`"
+				} catch (e: Exception) {
+					val error = e.localizedMessage
+					if (error.isNullOrBlank()) "Do you know how math works?" else getResponse(error)
+				}
 			}
 		}
 	}

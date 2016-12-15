@@ -11,11 +11,12 @@ import org.jsoup.nodes.Document
  */
 class Fun {
 
-	init {
-		for (type in FunType.values()) funCommand(type)
-	}
+	init { for (type in FunType.values()) funCommand(type) }
 
-	fun funCommand(type: FunType) = registerCommand(type.title, type.description) { _, _, _ -> type.getResponse() }
+	fun funCommand(type: FunType) = registerCommand(type.title, type.description) { e, _, _ ->
+		e.message.deleteMessage()
+		type.getResponse()
+	}
 
 	enum class FunType(val title: String, val description: String, val webURL: String, val element: String) {
 
