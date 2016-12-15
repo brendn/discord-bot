@@ -1,10 +1,9 @@
 package me.brendn.discord.command
 
+import me.brendn.discord.command.commands.Clear
 import me.brendn.discord.command.commands.Fun
 import me.brendn.discord.command.commands.Math
-import me.brendn.jdakt.message
-import net.dv8tion.jda.core.MessageHistory
-import net.dv8tion.jda.core.Permission
+import me.brendn.jdakt.print
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 
 /**
@@ -27,25 +26,12 @@ object CommandManager {
 	init {
 		Math()
 		Fun()
+		Clear()
 
-		registerCommand("help", "Lists commands") { _, _, _ ->
+		registerCommand("help", "Lists commands") { event, _, _ ->
 			var out = "Here are all of the commands:"
-			for (c in commands) out += "\n- ${c.name}: ${c.help}"
-			out
-		}
-		registerCommand("clear", "Clears chat history.") { event, args, _ ->
-			if (event.member.hasPermission(event.textChannel, Permission.MANAGE_CHANNEL)) {
-				val amount = 0
-				if (args.isNotEmpty()) {
-					//TODO
-				}
-				val history: MessageHistory = event.textChannel.history
-				val messages = history.retrievePast(100).block()
-				event.textChannel.deleteMessages(messages).queue()
-				"Cleared history!"
-			} else {
-				"You ain't got permission for that!" //i actually haven't checked if this works or not...
-			}
+			for (c in commands) out += "\n**${c.name}**: ${c.help}"
+			event.print(out)
 		}
 	}
 
@@ -87,12 +73,12 @@ object CommandManager {
 	inline fun registerCommand(name: String, help: String,
 							   crossinline process: (event: MessageReceivedEvent,
 													 args: List<String>,
-													 message: String) -> String) {
+													 message: String) -> Unit) {
 		commands.add(object : Command() {
 			override val name = name
 			override val help = help
 			override fun process(event: MessageReceivedEvent, args: List<String>, message: String) {
-				event.channel.message(process(event, args, message))
+				process(event, args, message)
 			}
 		})
 	}

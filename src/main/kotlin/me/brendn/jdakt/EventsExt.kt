@@ -8,11 +8,10 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent
  * @since 5:43 PM on 12/15/2016
  */
 
-fun MessageReceivedEvent.getPreviousMessage() {
-
-}
+//fun MessageReceivedEvent.getPreviousMessage() : Message? {
+//}
 
 val MessageReceivedEvent.authorName: String get() = member.effectiveName
+val MessageReceivedEvent.messageId: String get() = message.id
 
-fun MessageReceivedEvent.getMessageId() = message.id
 fun MessageReceivedEvent.print(message: String) = channel.message(message)

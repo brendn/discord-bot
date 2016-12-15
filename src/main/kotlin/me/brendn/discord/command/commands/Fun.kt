@@ -1,6 +1,7 @@
 package me.brendn.discord.command.commands
 
 import me.brendn.discord.command.CommandManager.registerCommand
+import me.brendn.jdakt.print
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
@@ -15,7 +16,7 @@ class Fun {
 
 	fun funCommand(type: FunType) = registerCommand(type.title, type.description) { e, _, _ ->
 		e.message.deleteMessage()
-		type.getResponse()
+		e.print(type.getResponse())
 	}
 
 	enum class FunType(val title: String, val description: String, val webURL: String, val element: String) {
