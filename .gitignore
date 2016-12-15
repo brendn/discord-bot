@@ -1,0 +1,10 @@
+# hiding api info... get outta here!
+src/main/kotlin/api.kt
+
+# other folders/files
+.gradle/
+.idea/
+build/
+gradle/
+gradlew
+gradlew.bat
