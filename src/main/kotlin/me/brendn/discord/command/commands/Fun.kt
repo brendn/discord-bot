@@ -1,6 +1,6 @@
 package me.brendn.discord.command.commands
 
-import me.brendn.discord.command.CommandManager.registerCommand
+import me.brendn.discord.command.CommandManager.command
 import me.brendn.jdakt.print
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -14,13 +14,12 @@ class Fun {
 
 	init { for (type in FunType.values()) funCommand(type) }
 
-	fun funCommand(type: FunType) = registerCommand(type.title, type.description) { e, _, _ ->
+	fun funCommand(type: FunType) = command(type.title, type.description) { (e) ->
 		e.message.deleteMessage()
 		e.print(type.getResponse())
 	}
 
 	enum class FunType(val title: String, val description: String, val webURL: String, val element: String) {
-
 		INSULT_GENERATOR("insult", "Give yourself some love.", "http://www.insultgenerator.org", "wrap") {
 			override fun getResponse(): String = getDoc().getElementsByClass(element).text()
 		},

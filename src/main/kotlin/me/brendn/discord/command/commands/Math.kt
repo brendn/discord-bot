@@ -1,7 +1,7 @@
 package me.brendn.discord.command.commands
 
 import com.udojava.evalex.Expression
-import me.brendn.discord.command.CommandManager.registerCommand
+import me.brendn.discord.command.CommandManager.command
 import me.brendn.jdakt.print
 
 /**
@@ -12,7 +12,7 @@ import me.brendn.jdakt.print
 class Math {
 
 	init {
-		registerCommand("calc", "Calculates the given expression.") { event, args, message ->
+		command("calc", "Calculates the given expression.") { (event, args, message) ->
 			if (args.isEmpty()) {
 				event.print("Maybe if you gave me some numbers I'd be able to do something.")
 			} else {

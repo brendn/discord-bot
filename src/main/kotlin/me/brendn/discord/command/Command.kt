@@ -2,9 +2,6 @@ package me.brendn.discord.command
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 
-/**
- * @since 4:00 PM on 12/14/2016
- */
 abstract class Command {
 
 	/**
@@ -22,3 +19,5 @@ abstract class Command {
 	 */
 	abstract fun process(event: MessageReceivedEvent, args: List<String>, message: String)
 }
+
+data class CommandData(val event: MessageReceivedEvent, val args: List<String>, val message: String)

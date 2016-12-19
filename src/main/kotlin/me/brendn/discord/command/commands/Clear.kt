@@ -1,6 +1,6 @@
 package me.brendn.discord.command.commands
 
-import me.brendn.discord.command.CommandManager.registerCommand
+import me.brendn.discord.command.CommandManager.command
 import me.brendn.jdakt.deleteMessages
 import me.brendn.jdakt.print
 import net.dv8tion.jda.core.Permission
@@ -11,7 +11,7 @@ import net.dv8tion.jda.core.Permission
 class Clear {
 
 	init {
-		registerCommand("clear", "Clears the given amount of messages.") { event, args, _ ->
+		command("clear", "Clears the given amount of messages.") { (event, args) ->
 			if (event.member.hasPermission(event.textChannel, Permission.MANAGE_CHANNEL)) {
 				val amount = if (args.isEmpty()) 100 else getAmount(args) ?: -1
 				if (amount <= 1 || amount > 100) {

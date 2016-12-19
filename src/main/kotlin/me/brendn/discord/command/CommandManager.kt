@@ -28,7 +28,7 @@ object CommandManager {
 		Fun()
 		Clear()
 
-		registerCommand("help", "Lists commands") { event, _, _ ->
+		command("help", "Lists commands") { (event) ->
 			var out = "Here are all of the commands:"
 			for (c in commands) out += "\n**${c.name}**: ${c.help}"
 			event.print(out)
@@ -70,15 +70,13 @@ object CommandManager {
 	 * @param [process] is a lambda that is called whenever the [Command] is invoked, it returns the String that
 	 * will be output into the channel.
 	 */
-	inline fun registerCommand(name: String, help: String,
-							   crossinline process: (event: MessageReceivedEvent,
-													 args: List<String>,
-													 message: String) -> Unit) {
+	inline fun command(name: String, help: String,
+					   crossinline process: (data: CommandData) -> Unit) {
 		commands.add(object : Command() {
 			override val name = name
 			override val help = help
 			override fun process(event: MessageReceivedEvent, args: List<String>, message: String) {
-				process(event, args, message)
+				process(CommandData(event, args, message))
 			}
 		})
 	}

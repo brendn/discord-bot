@@ -23,9 +23,8 @@ class MessageListener : ListenerAdapter() {
 		val channelName = channel.name
 		val memberName = event.authorName
 		val message = event.message.content
-		println("{${event.messageId}}[$guildName][$channelName] $memberName: $message")
+		println("[$guildName][$channelName] $memberName: $message")
 		processMessage(message, event)
-		
 	}
 
 	/**
