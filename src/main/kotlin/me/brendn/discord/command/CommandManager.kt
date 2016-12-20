@@ -3,6 +3,8 @@ package me.brendn.discord.command
 import me.brendn.discord.command.commands.Clear
 import me.brendn.discord.command.commands.Fun
 import me.brendn.discord.command.commands.Math
+import me.brendn.discord.command.commands.Nick
+import me.brendn.discord.command.commands.undo.Undo
 import me.brendn.jdakt.print
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 
@@ -27,6 +29,8 @@ object CommandManager {
 		Math()
 		Fun()
 		Clear()
+		Nick()
+		Undo()
 
 		command("help", "Lists commands") { (event) ->
 			var out = "Here are all of the commands:"
