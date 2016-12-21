@@ -17,7 +17,6 @@ class Math {
 				event.print("Maybe if you gave me some numbers I'd be able to do something.")
 			} else {
 				try {
-					//the parsed expression
 					val expression = message.substring(4, message.length)
 					event.print("`$expression = ${Expression(expression).eval().toFloat()}`")
 				} catch (e: Exception) {
