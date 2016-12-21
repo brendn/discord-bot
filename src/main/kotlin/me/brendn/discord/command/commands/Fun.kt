@@ -14,10 +14,7 @@ class Fun {
 
 	init { for (type in FunType.values()) funCommand(type) }
 
-	fun funCommand(type: FunType) = command(type.title, type.description) { (event) ->
-		event.message.deleteMessage()
-		event.print(type.getResponse())
-	}
+	fun funCommand(type: FunType) = command(type.title, type.description) { (event) -> event.print(type.getResponse()) }
 
 	enum class FunType(val title: String, val description: String, val webURL: String, val element: String) {
 		INSULT_GENERATOR("insult", "Give yourself some love.", "http://www.insultgenerator.org", "wrap") {
@@ -28,9 +25,6 @@ class Fun {
 
 		fun getDoc(): Document = Jsoup.connect(webURL).get()
 
-		/**
-		 * The response, or output for this
-		 */
 		open fun getResponse() : String = getDoc().getElementsByTag(element).first().text().trim()
 	}
 }

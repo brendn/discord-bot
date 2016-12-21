@@ -28,7 +28,6 @@ object CommandManager {
 	init {
 		Math()
 		Fun()
-		Clear()
 		Nick()
 		Undo()
 

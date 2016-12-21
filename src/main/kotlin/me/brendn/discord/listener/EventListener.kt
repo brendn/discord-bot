@@ -2,6 +2,7 @@ package me.brendn.discord.listener
 
 import me.brendn.discord.DiscordBot.Companion.commandManager
 import me.brendn.jdakt.*
+import net.dv8tion.jda.core.events.ShutdownEvent
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 
@@ -10,7 +11,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter
  *
  * @since 3:31 PM on 12/14/2016
  */
-class MessageListener : ListenerAdapter() {
+class EventListener : ListenerAdapter() {
 
 	/**
 	 * Prints messages from chat into console as well as calls [processMessage] for each message.
@@ -25,6 +26,10 @@ class MessageListener : ListenerAdapter() {
 		val message = event.message.content
 		println("[$guildName][$channelName] $memberName: $message")
 		processMessage(message, event)
+	}
+
+	override fun onShutdown(event: ShutdownEvent) {
+		println("oooo")
 	}
 
 	/**

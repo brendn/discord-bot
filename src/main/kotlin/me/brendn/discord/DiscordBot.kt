@@ -2,7 +2,7 @@
 package me.brendn.discord
 
 import me.brendn.discord.command.CommandManager
-import me.brendn.discord.listener.MessageListener
+import me.brendn.discord.listener.EventListener
 import net.dv8tion.jda.core.AccountType
 import net.dv8tion.jda.core.JDABuilder
 
@@ -17,7 +17,7 @@ public class DiscordBot {
 
 		@JvmStatic public fun main(args: Array<String>) {
 			val jda = JDABuilder(AccountType.BOT).setToken(args[0]).buildBlocking()
-			jda.addEventListener(MessageListener())
+			jda.addEventListener(EventListener())
 		}
 	}
 }
