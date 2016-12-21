@@ -17,8 +17,9 @@ class Math {
 				event.print("Maybe if you gave me some numbers I'd be able to do something.")
 			} else {
 				try {
-					val inputExpression = message.substring(4, message.length)
-					event.print("`$inputExpression = ${Expression(inputExpression).eval().toFloat()}`")
+					//the parsed expression
+					val expression = message.substring(4, message.length)
+					event.print("`$expression = ${Expression(expression).eval().toFloat()}`")
 				} catch (e: Exception) {
 					if (e.localizedMessage.isNullOrBlank())
 						event.print("Do you know how math works?")
