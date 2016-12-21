@@ -29,6 +29,9 @@ class Math {
 		}
 	}
 
+	/**
+	 * This is added to the end of the output message, just for some fun
+	 */
 	fun getResponse(error: String) : String {
 		val unknownOp = ": "
 		if (error.lastIndexOf(unknownOp) != -1) {
