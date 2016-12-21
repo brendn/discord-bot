@@ -20,4 +20,4 @@ abstract class Command {
 	abstract fun process(event: MessageReceivedEvent, args: List<String>, message: String)
 }
 
-data class CommandData(val event: MessageReceivedEvent, val args: List<String>, val message: String)
+data class CommandSource(val event: MessageReceivedEvent, val args: List<String>, val message: String)

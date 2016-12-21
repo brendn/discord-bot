@@ -14,4 +14,5 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 val MessageReceivedEvent.authorName: String get() = member.effectiveName
 val MessageReceivedEvent.messageId: String get() = message.id
 
-fun MessageReceivedEvent.print(message: String) = channel.message(message)
+fun MessageReceivedEvent.print(message: String, showBalloon: Boolean = true) =
+		channel.message("${if (showBalloon) ":speech_balloon " else ""}$message")

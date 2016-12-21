@@ -35,7 +35,7 @@ object CommandManager {
 		command("help", "Lists commands") { (event) ->
 			var out = "Here are all of the commands:"
 			for (c in commands) out += "\n**${c.name}**: ${c.help}"
-			event.print(out)
+			event.print(out, false)
 		}
 	}
 
@@ -75,12 +75,12 @@ object CommandManager {
 	 * will be output into the channel.
 	 */
 	inline fun command(name: String, help: String,
-					   crossinline process: (data: CommandData) -> Unit) {
+					   crossinline process: (data: CommandSource) -> Unit) {
 		commands.add(object : Command() {
 			override val name = name
 			override val help = help
 			override fun process(event: MessageReceivedEvent, args: List<String>, message: String) {
-				process(CommandData(event, args, message))
+				process(CommandSource(event, args, message))
 			}
 		})
 	}

@@ -2,6 +2,9 @@ package me.brendn.discord.command.commands
 
 import me.brendn.discord.command.CommandManager.command
 import me.brendn.discord.command.commands.undo.Undo.Companion.setUndo
+import me.brendn.discord.ext.hasQuotes
+import me.brendn.discord.ext.quoted
+import me.brendn.discord.ext.startAt
 import me.brendn.jdakt.print
 import net.dv8tion.jda.core.entities.Guild
 import net.dv8tion.jda.core.entities.Member
@@ -33,25 +36,18 @@ class Nick {
 		val member = guild.getMembersByNickname(name, true)[0]
 		setNickname(member, nick).queue()
 		setUndo { (event) ->
-			event.guild.controller.setNick(name, nick)
-			event.print("Set $name's nickname back to $nick")
+			event.guild.controller.setNick(nick, name)
+			event.print("Set $nick's nickname back to $name")
 		}
 	}
 
-	fun hasQuotes(input: String) = quoted(input).size > 1
-	fun quoted(input: String) = input.split("\"")
-
 	fun getNick(input: String) : String {
-		if (hasQuotes(input)) return input.substringAfter(quoted(input)[1]).startAt(2)
+		if (input.hasQuotes()) return input.substringAfter(input.quoted()[1]).startAt(2)
 		else return input.substringAfter(input.split(" ")[1]).startAt(1)
 	}
 
-	private fun String.startAt(index: Int) : String {
-		return this.substring(index, length)
-	}
-
 	fun Guild.parseName(input: String) : Member? {
-		if (hasQuotes(input)) return assumeName(quoted(input)[1]) ?: getMembersByNickname(quoted(input)[1], true)[0]
+		if (input.hasQuotes()) return assumeName(input.quoted()[1]) ?: getMembersByNickname(input.quoted()[1], true)[0]
 		else {
 			val name = input.split(" ")[1]; return assumeName(name) ?: getMembersByNickname(name, true)[0]
 		}

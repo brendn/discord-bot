@@ -1,6 +1,6 @@
 package me.brendn.discord.command.commands.undo
 
-import me.brendn.discord.command.CommandData
+import me.brendn.discord.command.CommandSource
 import me.brendn.discord.command.CommandManager.command
 import me.brendn.jdakt.print
 
@@ -12,9 +12,9 @@ class Undo {
 	companion object {
 		var currentAction: UndoAction? = null
 
-		inline fun setUndo(crossinline process: (data: CommandData) -> Unit) {
+		inline fun setUndo(crossinline process: (data: CommandSource) -> Unit) {
 			currentAction = (object : UndoAction {
-				override fun dispatch(data: CommandData) = process(data)
+				override fun dispatch(data: CommandSource) = process(data)
 			})
 		}
 	}
@@ -25,7 +25,7 @@ class Undo {
 }
 
 interface UndoAction {
-	fun dispatch(data: CommandData) {
+	fun dispatch(data: CommandSource) {
 		data.event.print("No undo action available!")
 	}
 }
