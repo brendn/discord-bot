@@ -11,6 +11,12 @@ class Undo {
 
 	companion object {
 		var currentAction: UndoAction? = null
+
+		inline fun setUndo(crossinline process: (data: CommandData) -> Unit) {
+			currentAction = (object : UndoAction {
+				override fun dispatch(data: CommandData) = process(data)
+			})
+		}
 	}
 
 	init {

@@ -1,10 +1,7 @@
 package me.brendn.discord.command.commands
 
-import me.brendn.discord.command.CommandData
 import me.brendn.discord.command.CommandManager.command
-import me.brendn.discord.command.commands.undo.Undo
-import me.brendn.discord.command.commands.undo.UndoAction
-import me.brendn.jdakt.message
+import me.brendn.discord.command.commands.undo.Undo.Companion.setUndo
 import me.brendn.jdakt.print
 import net.dv8tion.jda.core.entities.Guild
 import net.dv8tion.jda.core.entities.Member
@@ -32,19 +29,13 @@ class Nick {
 		}
 	}
 
-	fun setUndo(name: String, nick: String) {
-		Undo.currentAction = (object : UndoAction {
-			override fun dispatch(data: CommandData) {
-				data.event.guild.controller.setNick(name, nick)
-				data.event.channel.sendMessage("Set $name's nickname back to $nick.").queue()
-			}
-		})
-	}
-
 	fun GuildController.setNick(name: String, nick: String) {
 		val member = guild.getMembersByNickname(name, true)[0]
 		setNickname(member, nick).queue()
-		setUndo(name, nick)
+		setUndo { (event) ->
+			event.guild.controller.setNick(name, nick)
+			event.print("Set $name's nickname back to $nick")
+		}
 	}
 
 	fun hasQuotes(input: String) = quoted(input).size > 1
