@@ -1,6 +1,5 @@
 package me.brendn.discord.command
 
-import me.brendn.discord.command.commands.Clear
 import me.brendn.discord.command.commands.Fun
 import me.brendn.discord.command.commands.Math
 import me.brendn.discord.command.commands.Nick

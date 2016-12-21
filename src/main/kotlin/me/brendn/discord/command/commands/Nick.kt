@@ -1,7 +1,7 @@
 package me.brendn.discord.command.commands
 
 import me.brendn.discord.command.CommandManager.command
-import me.brendn.discord.command.commands.undo.Undo.Companion.setUndo
+import me.brendn.discord.command.commands.undo.Undo.Companion.undo
 import me.brendn.discord.ext.hasQuotes
 import me.brendn.discord.ext.quoted
 import me.brendn.discord.ext.startAt
@@ -35,7 +35,7 @@ class Nick {
 	fun GuildController.setNick(name: String, nick: String) {
 		val member = guild.getMembersByNickname(name, true)[0]
 		setNickname(member, nick).queue()
-		setUndo { (event) ->
+		undo { (event) ->
 			event.guild.controller.setNick(nick, name)
 			event.print("Set $nick's nickname back to $name")
 		}
