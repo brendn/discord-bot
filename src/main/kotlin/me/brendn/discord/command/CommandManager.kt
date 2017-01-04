@@ -17,7 +17,7 @@ object CommandManager {
 	/**
 	 * The alias used to identify commands in the chat.
 	 */
-	const val COMMAND_ALIAS = "!"
+	const val COMMAND_PREFIX = "!"
 
 	/**
 	 * The registered commands.
@@ -38,11 +38,11 @@ object CommandManager {
 	}
 
 	/**
-	 * Called every time a message is read, checks if it starts with [COMMAND_ALIAS] and attempts to perform
+	 * Called every time a message is read, checks if it starts with [COMMAND_PREFIX] and attempts to perform
 	 * the specified command.
 	 */
 	fun processCommand(message: String, event: MessageReceivedEvent) {
-		val hasCommand = message.startsWith(COMMAND_ALIAS)
+		val hasCommand = message.startsWith(COMMAND_PREFIX)
 		if (hasCommand) {
 			val msg = message.substring(1, message.length)
 			val args: List<String> = msg.split(" ")
@@ -58,11 +58,7 @@ object CommandManager {
 	/**
 	 * @return a [Command] from [commands] that is named [name]
 	 */
-	fun getCommand(name: String) : Command? {
-		commands.filter { it.name.toLowerCase() == name.toLowerCase() }
-				.forEach { return it }
-		return null
-	}
+	fun getCommand(name: String) : Command? = commands.firstOrNull { it.name.toLowerCase() == name.toLowerCase() }
 
 	/**
 	 * Creates a [Command] with the given [name] and [help] values and adds it to the [commands] list.
