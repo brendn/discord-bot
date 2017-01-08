@@ -16,7 +16,8 @@ import net.dv8tion.jda.core.managers.GuildController
  * The username of the target can be specified within quotes (useful for users with names that are not one word) or
  * without quotes with a portion of the name or the full name.
  * ---
- * Written on 12/19/2016 at 10:10PM
+ * Time: 10:10PM
+ * Date: 12/19/2016
  * @author brendn
  */
 class Nick {

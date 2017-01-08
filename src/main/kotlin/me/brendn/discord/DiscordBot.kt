@@ -7,7 +7,8 @@ import net.dv8tion.jda.core.AccountType
 import net.dv8tion.jda.core.JDABuilder
 
 /**
- * @since 6:46 PM on 12/14/2016
+ * Time: 6:46 PM
+ * Date: 12/14/2016
  */
 public class DiscordBot {
 

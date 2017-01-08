@@ -7,7 +7,8 @@ import me.brendn.jdakt.print
 /**
  * Math-related commands.
  *
- * @since 8:02 PM on 12/14/2016
+ * Time: 8:02 PM
+ * Date: 12/14/2016
  */
 class Math {
 

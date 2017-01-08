@@ -5,7 +5,8 @@ import me.brendn.discord.command.CommandManager.command
 import me.brendn.jdakt.print
 
 /**
- * @since 10:29 PM on 12/19/2016
+ * Time: 10:29 PM
+ * Date: 12/19/2016
  */
 class Undo {
 

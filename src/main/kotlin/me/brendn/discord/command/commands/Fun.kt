@@ -8,7 +8,8 @@ import org.jsoup.nodes.Document
 /**
  * Fun commands.
  *
- * @since 8:05 PM on 12/14/2016
+ * Time: 8:05 PM
+ * Date: 12/14/2016
  */
 class Fun {
 

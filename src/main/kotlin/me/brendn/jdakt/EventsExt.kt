@@ -5,7 +5,8 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 /**
  * Extension functions for various events.
  *
- * @since 5:43 PM on 12/15/2016
+ * Time: 5:43 PM
+ * Date: 12/15/2016
  */
 
 val MessageReceivedEvent.authorName: String get() = member.effectiveName

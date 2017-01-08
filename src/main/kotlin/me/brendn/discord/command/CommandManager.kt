@@ -10,7 +10,8 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 /**
  * Used to handle command loading and processing.
  *
- * @since 6:47 PM on 12/14/2016
+ * Time: 6:47 PM
+ * Date: 12/14/2016
  */
 object CommandManager {
 

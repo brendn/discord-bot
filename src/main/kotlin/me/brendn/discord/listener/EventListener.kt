@@ -9,7 +9,8 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter
 /**
  * Implementation of [ListenerAdapter] used to read messages sent into the chat.
  *
- * @since 3:31 PM on 12/14/2016
+ * Time: 3:31 PM
+ * Date: 12/14/2016
  */
 class EventListener : ListenerAdapter() {
 
