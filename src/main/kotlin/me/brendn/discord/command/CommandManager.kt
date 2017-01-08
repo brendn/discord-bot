@@ -22,7 +22,7 @@ object CommandManager {
 	/**
 	 * The registered commands.
 	 */
-	var commands: ArrayList<Command> = arrayListOf()
+	var commands: MutableList<Command> = mutableListOf()
 
 	init {
 		Math()
@@ -71,11 +71,9 @@ object CommandManager {
 	inline fun command(name: String, help: String,
 					   crossinline process: (data: CommandSource) -> Unit) {
 		commands.add(object : Command() {
-			override val name = name
-			override val help = help
-			override fun process(event: MessageReceivedEvent, args: List<String>, message: String) {
+			override val name = name; override val help = help
+			override fun process(event: MessageReceivedEvent, args: List<String>, message: String) =
 				process(CommandSource(event, args, message))
-			}
 		})
 	}
 }

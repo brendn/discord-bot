@@ -20,10 +20,8 @@ class Math {
 					val expression = message.substring(4, message.length)
 					event.print("`$expression = ${Expression(expression).eval().toFloat()}`")
 				} catch (e: Exception) {
-					if (e.localizedMessage.isNullOrBlank())
-						event.print("Do you know how math works?")
-					else
-						event.print(getResponse(e.localizedMessage))
+					event.print(if (e.localizedMessage.isNullOrBlank()) "Do you know how math works?"
+					else getResponse(e.localizedMessage))
 				}
 			}
 		}
