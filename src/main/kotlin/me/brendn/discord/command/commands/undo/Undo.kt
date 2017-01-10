@@ -8,16 +8,14 @@ import me.brendn.jdakt.print
  * Time: 10:29 PM
  * Date: 12/19/2016
  */
-class Undo {
+object Undo {
 
-	companion object {
-		var currentAction: UndoAction? = null
+	var currentAction: UndoAction? = null
 
-		inline fun undo(crossinline process: (data: CommandSource) -> Unit) {
-			currentAction = (object : UndoAction {
-				override fun dispatch(data: CommandSource) = process(data)
-			})
-		}
+	inline fun undo(crossinline process: (data: CommandSource) -> Unit) {
+		currentAction = (object : UndoAction {
+			override fun dispatch(data: CommandSource) = process(data)
+		})
 	}
 
 	init {

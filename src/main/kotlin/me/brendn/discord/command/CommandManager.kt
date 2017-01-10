@@ -29,7 +29,7 @@ object CommandManager {
 		Math()
 		Fun()
 		Nick()
-		Undo()
+		Undo
 
 		command("help", "Lists commands") { (event) ->
 			var out = "Here are all of the commands:"
