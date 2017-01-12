@@ -29,10 +29,6 @@ class EventListener : ListenerAdapter() {
 		processMessage(message, event)
 	}
 
-	override fun onShutdown(event: ShutdownEvent) {
-		println("oooo")
-	}
-
 	/**
 	 * Ran every time a message is read, for now only calls [commandManager]
 	 *
